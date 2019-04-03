@@ -8,3 +8,5 @@ The majority of these functions were written or adapted by me (JBT), but several
 All functions are thoroughly documented and checked for errors, but please feel free to commit suggestions for review and potential inclusion. 
 
 As this page is developed further, other folders, specific to individual projects, will also be uploaded. 
+
+The Wiki associated with this GitHub page will also serve as a useful reference for those developing their own code, as it lays out coding standards to be employed across the lab. Common organization and thorough documentation are key to collaboration within the lab, and for the successful handing down of code across 'generations' of lab members. 
