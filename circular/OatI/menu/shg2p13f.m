@@ -1,0 +1,17 @@
+texten=get(hedittest1,'String'); 
+str=get(hedittest2,'String'); 
+xpos=str2num(str);
+str=get(hedittest3,'String'); 
+ypos=str2num(str);
+texten2=get(hedittest4,'String'); 
+texten3=get(hedittest5,'String'); 
+close(f2p13)
+figure(f1)
+htext(htextcount)=text(xpos,ypos,texten);
+%set(htext,'FontSize',FontSize);
+htextcout=htextcount+1;
+htext(htextcount)=text(xpos,ypos-0.2,texten2);
+%set(htext,'FontSize',FontSize);
+htextcout=htextcount+1;
+htext(htextcount)=text(xpos,ypos-0.4,texten3);
+%set(htext,'FontSize',FontSize);
