@@ -1,0 +1,6 @@
+f2=figure('Name','Simple Statistics','NumberTitle','off',...
+'Position',[2 2 220 290],'Resize','off');
+axis('off');
+text(0.25,0.8,'Variable');
+hedittest=uicontrol('Style','edit','Position',[130 80 40 20],...
+'Callback','dohedit')

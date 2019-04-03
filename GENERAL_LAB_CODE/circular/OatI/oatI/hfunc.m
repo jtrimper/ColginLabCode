@@ -1,0 +1,20 @@
+Y=[H(1,:),H(2,:),H(3,:)];
+Y=[Y,H(4,:),H(5,:),H(6,:)];
+Y=[Y,H(7,:),H(8,:),H(9,:),H(10,:)];
+%X=[ones(nz*ny,1)];
+%X=[kron(ones(nz,1),y'),kron(z',ones(ny,1))];
+X=[kron(ones(nz,1),y'),kron(z',ones(ny,1))];
+X=[X,kron(ones(nz,1),y'.*y'),kron(z'.*z',ones(ny,1)),kron(z',y')];
+%X=[X,kron(ones(nz,1),y'.*y'),kron(z'.*z',y'),kron(z',y')];
+[b,s]=multreg(X,Y')
+Z=[kron(ones(nz,1),y'.*y'/0.85^2),kron(z'.*z'/6.6^2,y')];
+Z=[kron(ones(nz,1),y'.*y'/0.85^2),kron(z'.*z'/6.6^2,y')];
+Z=[kron((z'+12).^(2+0.5*y'),y'.^(2+0.4*z'))];
+haty=X*b;
+haty=(2/144)*Z*ones(1,1);
+hatH=[haty(1:10)';haty(11:20)';haty(21:30)';haty(31:40)';haty(41:50)';haty(51:60)'];
+hatH=[hatH;haty(61:70)';haty(71:80)';haty(81:90)';haty(91:100)'];
+mesh(z',y',hatH)
+%print fighathfunc
+%print
+%mesh(z',y',H)

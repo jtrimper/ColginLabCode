@@ -1,0 +1,9 @@
+%k=menu('Choose orientation','landscape','portrait','tall') 
+%if (k==1), 
+%   orient('landscape')
+%end
+hpop=uicontrol('Style','Popup','String',...
+'landscape|portrait|tall','Position',[370 20 90 80],...
+'Callback','dohpop')
+hedit=uicontrol('Style','Edit','String','Variable','Position',[20 20 50 40],...
+'Callback','dohedit')

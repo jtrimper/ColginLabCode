@@ -1,0 +1,183 @@
+<head>
+<title>SAT-I Statistics Toolbox</title>
+<!-- Changed by: Halfdan Grage, 15-February-1998 -->
+</head>
+
+
+<h2>SATI Statistics Toolbox</h2>
+Version 1.01, 27-Jul-95<br>
+Copyright (c) Björn Holmquist.<br>
+Comments and suggestions to bjorn@maths.lth.se.
+
+<p>
+Verktygslådan finns i
+ett kompakterat format, ???, som du kan ladda hem och sedan packa upp med
+ett lämpligt program, t.ex. ???. Om detta inte fungerar, kan du i stället gå
+igenom innehållsförteckningen nedan och ladda hem filerna en i taget.
+
+<h3>Density and probability functions.</h3>
+<dl>
+<dt><A HREF = "bern.m">bern</A>*     - Bernouilli probability function
+<dt><A HREF = "dbeta.m">dbeta</A>     - Beta density function.
+<dt><A HREF = "dbinom.m">dbinom</A>   - Binomial probability function.
+<dt><A HREF = "bin.m">bin</A>*     - Binomial probability function
+<dt><A HREF = "dchisq.m">dchisq</A>    - Chisquare density function.
+<dt><A HREF = "chi2pdf.m">chi2pdf</A>*    - Chisquare density function.
+<dt><A HREF = "exppdf.m">exppdf</A>*    - Exponential density function.
+<dt><A HREF = "df.m">df</A>        - F density function.
+<dt><A HREF = "dgamma.m">dgamma</A>    - Gamma density function.
+<dt><A HREF = "gammapdf.m">gammapdf</A>*    - Gamma density function.
+<dt><A HREF = "geom.m">geom</A>*    - Geometric probability  function.
+<dt><A HREF = "dhypg.m">dhypg</A>   - Hypergeometric probability function.
+<dt><A HREF = "hyp.m">hyp</A>*   - Hypergeometric probability function.
+<dt><A HREF = "dnorm.m">dnorm</A>     - Normal density function.
+<dt><A HREF = "gauss.m">gauss</A>*     - Normal density function.
+<dt><A HREF = "dlognorm.m">dlognorm</A>     - Lognormal density function.
+<dt><A HREF = "po.m">po</A>*   - Poisson probability function.
+<dt><A HREF = "rayleigh.m">rayleigh</A>*        - Rayleigh density function.
+<dt><A HREF = "dt.m">dt</A>        - Student t density function.
+<dt><A HREF = "student.m">student</A>*        - Student t density function.
+<dt><A HREF = "dweib.m">dweib</A>        - Weibull density function.
+<dt><A HREF = "weibull.m">weibull</A>*        - Weibull density function.
+</dl>
+
+<h3>Distribution functions.</h3>
+<dl>
+<dt><A HREF = "berncdf.m">berncdf</A>*     - Bernouilli cumulative probability function
+<dt><A HREF = "pbeta.m">pbeta</A>     - Beta distribution function.
+<dt><A HREF = "pbinom.m">pbinom</A>    - Binomial cumulative probability function.
+<dt><A HREF = "bincdf.m">bincdf</A>*     - Binomial cumulative probability function
+<dt><A HREF = "pchisq.m">pchisq</A>    - Chisquare distribution function.
+<dt><A HREF = "pf.m">pf</A>        - F distribution function.
+<dt><A HREF = "fcdf.m">fcdf</A>*        - F distribution function.
+<dt><A HREF = "pgamma.m">pgamma</A>    - Gamma distribution function.
+<dt><A HREF = "geomcdf.m">geomcdf</A>*    - Geometric cumulative distribution function.
+<dt><A HREF = "phypg.m">phypgeo</A>   - Hypergeometric cumulative probability function.
+<dt><A HREF = "hypcdf.m">hypcdf</A>*   - Hypergeometric cumulative probability function.
+<dt><A HREF = "pnorm.m">pnorm</A>     - Normal distribution function.
+<dt><A HREF = "ncdf.m">ncdf</A>*     - Normal distribution function.
+<dt><A HREF = "plognorm.m">plognorm</A>     - Lognormal distribution function.
+<dt><A HREF = "pocdf.m">pocdf</A>*   - Poisson cumulative probability function.
+<dt><A HREF = "raycdf.m">raycdf</A>*        - Rayleigh cumulative distribution function.
+<dt><A HREF = "pt.m">pt</A>        - Student t distribution function.
+<dt><A HREF = "tcdf.m">tcdf</A>*        - Student t cumulative distribution function.
+<dt><A HREF = "pweib.m">pweib</A>        - Weibull distribution function.
+<dt><A HREF = "weibcdf.m">weibcdf</A>*        - Weibull distribution function.
+</dl>
+
+<h3>Inverse distribution functions.</h3>
+<dl>
+<dt><A HREF = "qbeta.m">qbeta</A>     - Beta inverse distribution function.
+<dt><A HREF = "qbinom.m">pbinom</A>    - Binomial inverse cdf.
+<dt><A HREF = "qchisq.m">qchisq</A>    - Chisquare inverse distribution function.
+<dt><A HREF = "chi2pct.m">chi2pct</A>*    - Chisquare inverse distribution function.
+<dt><A HREF = "qf.m">qf</A>        - F inverse distribution function.
+<dt><A HREF = "qgamma.m">qgamma</A>    - Gamma inverse distribution function.
+<dt><A HREF = "qhypg.m">qhypg</A>   - Hypergeometric inverse cdf.
+<dt><A HREF = "qnorm.m">qnorm</A>     - Normal inverse distribution function.
+<dt><A HREF = "npct.m">npct</A>*     - Normal inverse distribution function.
+<dt><A HREF = "raypct.m">raypcf</A>*        - Rayleigh inverse distribution function.
+<dt><A HREF = "qt.m">qt</A>        - Student t inverse distribution function.
+<dt><A HREF = "tpct.m">tpct</A>*        - Student t inverse distribution function.
+<dt><A HREF = "weibpct.m">weibpct</A>*        - Weibull inverse distribution function.
+</dl>
+
+<h3>Random number generators.</h3>
+<dl>
+<dt><A HREF = "randbern.m">randbern</A>*     - Random numbers from the Bernoulli distribution.
+<dt><A HREF = "rbeta.m">rbeta</A>     - Random numbers from the beta distribution.
+<dt><A HREF = "rbinom.m">rbinom</A>    - Random numbers from the binomial distribution.
+<dt><A HREF = "randbin.m">randbin</A>*    - Random numbers from the binomial distribution.
+<dt><A HREF = "rchisq.m">rchisq</A>    - Random numbers from the chisquare distribution.
+<dt><A HREF = "randexp.m">randexp</A>*    - Random numbers from the exponential distribution.
+<dt><A HREF = "rf.m">rf</A>        - Random numbers from the F distribution
+<dt><A HREF = "rgamma.m">rgamma</A>    - Random numbers from the gamma distribution.
+<dt><A HREF = "randgeom.m">randgeom</A>*    - Random numbers from the geometric distribution.
+<dt><A HREF = "rhypg.m">rhypgeo</A>   - Random numbers from the hypergeometric distribution.
+<dt><A HREF = "randhyp.m">randhyp</A>*   - Random numbers from the hypergeometric distribution.
+<dt><A HREF = "randhyp.m">randhyp</A>*   - Random numbers from the hypergeometric distribution.
+<dt><A HREF = "randpo.m">randpo</A>*   - Random numbers from the Poisson distribution.
+<dt><A HREF = "rnorm.m">rnorm</A>     - Normal random numbers (use randn instead).
+<dt><A HREF = "rt.m"></A>rt        - Random numbers from the student t distribution.
+</dl>
+
+<h3>Logistic regression.</h3>
+<dl>
+<dt><A HREF = "logitfit.m">logitfit</A>  - Fit a logistic regression model.
+<dt><A HREF = "lodds.m">lodds</A>     - Log odds function.
+<dt><A HREF = "loddsinv.m">loddsinv</A>  - Inverse of log odds function.
+</dl>
+
+<h3>Various functions.</h3>
+<dl>
+<dt><A HREF = "chi2sim.m">chi2sim</A>*   -
+<dt><A HREF = "chkld.m">chkld</A>*   -
+<dt><A HREF = "classify.m">classify</A>*   -
+<dt><A HREF = "bincoef.m">bincoef</A>   - Binomial coefficients.
+<dt><A HREF = "getdata.m">getdata</A>   - Some famous multivariate data sets.
+<dt><A HREF = "quantile.m">quantile</A>  - Empirical quantile (percentile).
+</dl>
+
+<h3>Resampling methods.</h3>
+<dt><A HREF = "covjack.m">covjack</A>   - Jackknife estimate of the variance of a parameter estimate.
+<dt><A HREF = "covboot.m">covboot</A>   - Bootstrap estimate of the variance of a parameter estimate.
+<dt><A HREF = "stdjack.m">stdjack</A>   - Jackknife estimate of the parameter standard deviation.
+<dt><A HREF = "stdboot.m">stdboot</A>   - Bootstrap estimate of the parameter standard deviation.
+<dt><A HREF = "rboot.m">rboot</A>     - Simulate a bootstrap resample from a sample.
+<dt><A HREF = "ciboot.m">ciboot</A>    - Bootstrap confidence interval.
+<dt><A HREF = "test1b.m">test1b</A>    - Bootstrap t test and confidence interval for the mean.
+</dl>
+
+<h3>Descriptive measures</h3>
+<dl>
+<dt><A HREF = "iqr1.m">iqr1</A>*     -
+<dt><A HREF = "mean1.m">mean1</A>*     -
+<dt><A HREF = "median1.m">median1</A>*     -
+<dt><A HREF = "std1.m">std1</A>*     -
+<dt><A HREF = "var1.m">var1</A>*     - 
+</dl>
+
+<h3>Tests, confidence intervals, and model estimation.</h3>
+<dl>
+<dt><A HREF = "anova1.m">anova1</A>*    - 
+<dt><A HREF = "cmpmod.m">cmpmod</A>    - Compare small linear model versus large one.
+<dt><A HREF = "ciquant.m">ciquant</A>   - Nonparametric confidence interval for quantile.
+<dt><A HREF = "chi2.m">chi2</A>*   - Chi-square significance and homogeneity test.
+<dt><A HREF = "fishxact.m">fishxact</A>*   - Fisher's exact test.
+<dt><A HREF = "lsfit.m">lsfit</A>     - Fit a least squares model.
+<dt><A HREF = "lsselect.m">lsselect</A>  - Select a predictor subset for regression.
+<dt><A HREF = "signtest.m">signtest</A>*    - Signtest.
+<dt><A HREF = "ttest.m">ttest</A>*    - Student t-test in one or two normal sample(s).
+<dt><A HREF = "test1n.m">test1n</A>    - Tests and confidence intervals, one normal sample.
+<dt><A HREF = "test1r.m">test1r</A>    - Test for median equals 0 using rank test.
+<dt><A HREF = "test2n.m">test2n</A>    - Tests and confidence intervals, two normal samples.
+<dt><A HREF = "test2r.m">test2r</A>    - Test for equal location of two samples using rank test.
+</dl>
+
+<h3>Graphics.</h3>
+<dl>
+<dt><A HREF = "boxplot.m">boxplot</A>*    - Box and Whiskers plot
+<dt><A HREF = "barplot.m">barplot</A>*    - Bar plot
+<dt><A HREF = "gumbplot.m">gumbplot</A>* - Gumbel probability paper.
+<dt><A HREF = "qqnorm.m">qqnorm</A>    - Normal probability paper.
+<dt><A HREF = "normplot.m">normplot</A>*    - Normal probability paper.
+<dt><A HREF = "qqgamma.m">qqgamma</A> - Gamma probability paper.
+<dt><A HREF = "qqweib.m">qqweib</A> - Weibull probability paper.
+<dt><A HREF = "weibplot.m">weibplot</A>* - Weibull probability paper.
+<dt><A HREF = "qqplot.m">qqplot</A>    - Plot empirical quantile vs empirical quantile.
+<dt><A HREF = "linreg.m">linreg</A>    - Linear or polynomial regression, including plot.
+<dt><A HREF = "linreg.m">linreg</A>*    - Linear regression.
+<dt><A HREF = "mlr.m">mlr</A>*    - Multiple linear regression.
+<dt><A HREF = "mlr.m">multreg</A>*    - Multiple linear regression.
+<dt><A HREF = "histo.m">histo</A>     - Plot a histogram (alternative to hist).
+<dt><A HREF = "hist0.m">hist0</A>*     - Plot a histogram (alternative to hist).
+<dt><A HREF = "hist1.m">hist1</A>* - Plot a histogram (alternative to hist).
+<dt><A HREF = "plotsym.m">plotsym</A> - Plot with symbols.
+<dt><A HREF = "plotdens.m">plotdens</A> - Draw a nonparametric density estimate.
+<dt><A HREF = "polyreg.m">polyreg</A>*    - Polynomial regression.
+<dt><A HREF = "identify.m">identify</A> - Identify points on a plot by clicking with the mouse.
+<dt><A HREF = "pairs.m">pairs</A>     - Pairwise scatter plots.
+<dl>
+
+
+
