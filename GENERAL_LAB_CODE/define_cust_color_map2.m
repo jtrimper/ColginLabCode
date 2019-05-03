@@ -1,4 +1,4 @@
-function custColMap = define_cust_color_map2(color1, color2, color3, numRows)
+function custColMap = define_cust_color_map2(color1, color2, color3, numRows, plotOrNot)
 % function custColMap = define_cust_color_map2(color1, color2, color3, numRows)
 %
 % PURPOSE:
@@ -7,11 +7,13 @@ function custColMap = define_cust_color_map2(color1, color2, color3, numRows)
 %  **Same as define_cust_color_map, but this one allows for three colors**
 %
 % INPUT:
-%   color1 = string from rgb chart indicating which color to start with in the colormap
-%   color2 = string from rgb chart indicating which color to end with in the colormap
-%   color3 = string from rgb chart indicating which color to end with in the colormap
-%   numRows = optional input indicating how many rows to include in the colormap matrix
-%             if numRows is not provided, default is 64
+%      color1 = string from rgb chart indicating which color to start with in the colormap
+%      color2 = string from rgb chart indicating which color to end with in the colormap
+%      color3 = string from rgb chart indicating which color to end with in the colormap
+%     numRows = optional input indicating how many rows to include in the colormap matrix
+%               if numRows is not provided, default is 64
+%   plotOrNot = optional binary input indicating whether(1) or not(0) to plot a figure showing the colors
+%               default is no plotting (0)
 %
 % OUTPUT:
 %  cusColMap = numRows x 3 matrix with rgb triplet in each row
@@ -25,9 +27,9 @@ function custColMap = define_cust_color_map2(color1, color2, color3, numRows)
 % Colgin Lab
 
 
-plotPudding = 0; %set to 1 to plot figure showing the color scheme
-%                   cuz the proof is in the pudding
-
+if nargin == 4
+    plotOrNot = 0;
+end
 
 if nargin == 2
     numRows = 64;
@@ -67,7 +69,7 @@ end
 custColMap = [colMap1; colMap2];
 
 
-if plotPudding == 1
+if plotOrNot == 1
     figure;
     for i = 1:numRows
         ln = line([1 10], repmat(i,1,2));

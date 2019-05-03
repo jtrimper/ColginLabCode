@@ -1,12 +1,16 @@
-function [timestamp] = Readtfile(tfile)
+function [timestamp] = Readtfile(tfile, varargin)
 
-    tfp = fopen(tfile, 'rb','b');
-    if (tfp == -1)
-        warning([ 'Could not open tfile ' tfn]);
-    end
+fileType = 'uint32';
+if nargin>1
+    fileType = varargin{1};
+end
 
-    ReadHeader(tfp);    
-    
-    timestamp = fread(tfp,inf,'uint32');	%read as 32 bit ints
-    fclose(tfp);
-    
+tfp = fopen(tfile, 'rb','b');
+if (tfp == -1)
+    warning([ 'Could not open tfile ' tfn]);
+end
+
+ReadHeader(tfp);
+
+timestamp = fread(tfp,inf,fileType);
+fclose(tfp);

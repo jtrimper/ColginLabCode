@@ -1,63 +1,35 @@
-function asymInd = calc_theta_asym_ind(startStopTimes, thetaQuartTimes)
-% function asymInd = calc_theta_asym_ind(startStopTimes, thetaQuartTimes)
+function asymInds = calc_theta_asym_ind(phiDurs)
+% function asymInds = calc_theta_asym_ind(phiDurs)
 %
-% PURPOSE: 
-% To find average theta asymmetry re: Belluscio et al., 2012
-% log10 ratio of phase durations (falling+trough/peak+rise)
+% PURPOSE:
+%  To calculate the theta asymmetry index, a la Belluscio et al., 2012
+%  - duration of ascending phase over duration of descending phase, logarhythmically expressed
+%  - ascending and descending phases are defined as in Belluscio et al, dividing theta in to quartiles
 %
-% INPUT: 
-%   startStopTimes = the LFP boundary indices for each window in which you would like to evaluate 
-%                    the asymmetry index
-%  thetaQuartTimes = the times corresponding to the center of each theta phase 
-%                    [output of get_theta_phase_times]
+% INPUT:
+%   phiDurs = 4 x n matrix of center times for each theta phase
+%            - output of get_theta_phase
+%            - has one less column than phiTms because center of rising phase from first column
+%              is needed to calculate duration of first peak phase
+%
+% OUTPUT:
+%   asymInds = 1 x n-1 vector containing the theta asymmetry index for each theta cycle
+%              - dimension two has one less value than phiDurs (which is one less than phiTms)
+%                because ascending phase for the first available cycle is calculated from duration
+%                of rising phase in column 1 and duration of falling phase in column 2
 %
 % JB Trimper
-% 5/16
-% Manns Lab
+% 04/2019
+% Colgin Lab
 
 
-asymInd = nan(size(startStopTimes,1),1); 
-for t = 1:size(startStopTimes,1)
-    startTime = startStopTimes(t,1);
-    endTime = startStopTimes(t,2);
-    
-    firstCycleInd = find(thetaQuartTimes(1,:)>=startTime, 1, 'First');
-    lastCycleInd = find(thetaQuartTimes(4,:)<=endTime, 1, 'Last');
-    
-    if lastCycleInd - firstCycleInd > 1 %if at least two cycles
-        
-        firstCycleInd = firstCycleInd - 1;
-        lastCycleInd = lastCycleInd + 1;
-        
-        thetaData = thetaQuartTimes(:,firstCycleInd:lastCycleInd);
-        
-        tmp = thetaData(4:numel(thetaData)-3);
-        
-        for i = 2:length(tmp)
-            tmpTms(i-1,1) = tmp(i-1);
-            tmpTms(i-1,2) = tmp(i);
-        end
-        
-        tmpStartEndTms = mean(tmpTms,2)';
-        
-        for i = 2:length(tmpStartEndTms)
-            phiStartEndTms(i-1,1) = tmpStartEndTms(i-1);
-            phiStartEndTms(i-1,2) = tmpStartEndTms(i);
-        end
-        
-        phiDurs = phiStartEndTms(:,2) - phiStartEndTms(:,1);
-        phiDurs = reshape(phiDurs,4,numel(phiDurs)/4);
-        
-        phiDurs(abs(phiDurs)>(1/3/4)) = nan; %if any quartile lasts longer than 1/4 of a 3Hz oscillation, it's a nan cuz something's weird
-        
-        avgDurs = nanmean(phiDurs,2);
-        
-        fallAndTrough = avgDurs(2) + avgDurs(3);
-        peakAndRise = avgDurs(1) + avgDurs(4);
-        
-        %log transformed ratio of falling(plus trough) to rising (plus peak)
-        asymInd(t) = log10(fallAndTrough / peakAndRise);
-    end
-end
 
-asymInd = nanmean(asymInd); 
+phiDurs([1 3],:) = []; %get rid of peak and trough durations. We don't need them.
+
+%calc asym index
+asymInds = log10(phiDurs(2,1:end-1)./phiDurs(1,2:end));
+%         log10 (duration of rising phase / duration of falling phase)
+%         - ordered 'arbitarily' so that rising phase comes before falling phase
+
+
+end %fnctn

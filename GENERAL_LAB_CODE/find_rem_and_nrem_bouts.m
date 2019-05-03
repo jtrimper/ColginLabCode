@@ -30,12 +30,12 @@ winStep = .5; %s
 
 
 %% CALCULATE DELTA POWER, WITH WAVELETS
-deltaPow = get_wavelet_power(lfpData, lfpFs, [2 5], 6, 1, 0); %do NOT do decibel conversion but DO perform the old (energy) normalization
+deltaPow = get_wavelet_power(lfpData, lfpFs, [2 5], 6, 0, 0); %do NOT do decibel conversion and DO perform the NEW normalization
 deltaPow = mean(deltaPow,1);  %avg across freq
 
 
 %% CALCULATE THETA POWER, WITH WAVELETS
-thetaPow = get_wavelet_power(lfpData, lfpFs, [6 10], 6, 1, 0);
+thetaPow = get_wavelet_power(lfpData, lfpFs, [6 10], 6, 0, 0);
 thetaPow = mean(thetaPow,1); %avg across freq
 
 

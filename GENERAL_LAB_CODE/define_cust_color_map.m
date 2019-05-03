@@ -10,6 +10,7 @@ function custColMap = define_cust_color_map(color1, color2, numRows, plotOrNot)
 %   color2 = string from rgb chart indicating which color to end with in the colormap
 %   numRows = scalar input indicating how many rows to include in the colormap matrix
 % plotOrNot = optional binary input indicating whether(1) or not(0) to plot a figure showing the colors
+%             default is no plotting (0)
 %
 % OUTPUT:
 %  cusColMap = numRows x 3 matrix with rgb triplet in each row
