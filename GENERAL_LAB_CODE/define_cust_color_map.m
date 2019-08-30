@@ -1,5 +1,5 @@
 function custColMap = define_cust_color_map(color1, color2, numRows, plotOrNot)
-% function custColMap = define_cust_color_map(color1, color2, numRows)
+% function custColMap = define_cust_color_map(color1, color2, numRows, plotOrNot)
 %
 % PURPOSE:
 %  To define a custom colormap that goes from color 1 to color 2 with (optionally)
@@ -16,7 +16,6 @@ function custColMap = define_cust_color_map(color1, color2, numRows, plotOrNot)
 %  cusColMap = numRows x 3 matrix with rgb triplet in each row
 %
 % NOTES:
-%  - Option at top of function to plot example figure showing colors.
 %  - Calls function 'rgb' downloaded from Malab central.
 %
 % JB Trimper

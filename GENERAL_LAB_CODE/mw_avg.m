@@ -41,13 +41,19 @@ for i = 1:nWin
 end
 
 
+
 %% INTERPOLATE THE MISSING POINTS IF DESIRED, AND REMOVE NANS
 if interpOrNo == 1
     avgs = interp1(inds, avgs, 1:numSamps);
-    badInds = find(isnan(avgs));
-    avgs(badInds) = [];
     inds = 1:numSamps;
-    inds(badInds) = [];
+       
+    finalStartWinInd = find(~isnan(avgs), 1, 'First') - 1;
+    startAvg = mean(timeSeries(1:finalStartWinInd)); % Find an average of the raw time-series over that first segment of missing smoothed data
+    avgs(1:finalStartWinInd) = linspace(startAvg, avgs(finalStartWinInd+1), length(1:finalStartWinInd)); % Do linear interpolation from average across the missing start window to the first window's average
+    
+    firstEndWinInd = find(~isnan(avgs), 1, 'Last') + 1;
+    endAvg = mean(timeSeries(firstEndWinInd:end));% Find an average of the raw time-seris over the last segment of missing smoothed data
+    avgs(firstEndWinInd:end) = linspace(avgs(firstEndWinInd-1), endAvg, length(firstEndWinInd:length(timeSeries))); %Interpolate from the last MW average to the average across the missing end window and    
 end
 
 

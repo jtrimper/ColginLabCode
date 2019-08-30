@@ -1,5 +1,5 @@
-function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, arenaSz, spatBinSz, plotOrNot, velFilt)
-% function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, arenaSz, spatBinSz, plotOrNot, velFilt)
+function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, xBnds, yBnds, spatBinSz, plotOrNot, velFilt)
+% function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, xBnds, yBnds, spatBinSz, plotOrNot, velFilt)
 %
 % PURPOSE:
 %   To get the rate-map matrix for a cell.
@@ -7,12 +7,16 @@ function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, arenaSz, sp
 % INPUT:
 %      spkTms = spike time vector (n x 1) in seconds
 %      coords = coordinate matrix (n x 3) where (:,1) = frametimes, (:,2) = xPos, and (:,3) = yPos
-%     arenaSz = 1x2 vector indicating x & y size of the arena (track, box, whatever) in centimeters
+%               **xPos and yPos MUST be positive
+%      xBnds = 1x2 vector indicating spatial boundaries along x dimension
+%      yBnds = 1x2 vector indicating spatial boundaries along y dimension
+%              - These two 'bnds' variables were added to allow for a ratemap to have a span around zero
+%                e.g., xBnds = [-60 60]; yBnds = [-60 60]; see usage in enrichProj_1...
 %   spatBinSz = size, in cm, of spatial bins.
 %   plotOrNot = optional binary input indicating whether or not to plot the results
-%                - if not provided, defaults to 0 (do not plot)
+%                - if not provided (AND velFilt not provided), function defaults to 0 (do not plot)
 %     velFilt = optional binary input indicating whether or not to only consider spikes occuring
-%               when the rat was moving >= 5 cm/s 
+%               when the rat was moving >= 5 cm/s
 %                - if not provided, defaults to 0 (do not velocity filter)
 %
 % OUTPUT:
@@ -28,19 +32,26 @@ function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, arenaSz, sp
 
 
 %% DEFAULT, IF NECESSARY, TO NOT PLOTTING
+%    Note: If these next 3 lines fail to run, try changing the first line to "if ~exist('plotOrNot', 'var)"
+%          JT should test this later on, but in the middle of separate function currently.
+keyboard
 if nargin < 5 || isempty(plotOrNot)
     plotOrNot = 0;
 end
 
 
 %% DEFAULT, IF NECESSARY, TO NOT VELOCITY FILTERING
-if nargin < 6 || isempty(velFilt)
+if nargin < 6 || ~exist('velFilt', 'var')
     velFilt = 0;
 end
 
 
-numXBins = floor(arenaSz(1)/spatBinSz); 
-numYBins = floor(arenaSz(2)/spatBinSz); 
+%% GET THE SPATIAL BINS BASED ON THE BIN SIZE AND THE ARENA DIMENSIONS
+numXBins = floor(diff(xBnds)/spatBinSz); % Number of spatial bins is rounded down range of x or y values...
+numYBins = floor(diff(yBnds)/spatBinSz); % divided by the spatial bin size
+
+xBinEdges = xBnds(1):spatBinSz:xBnds(2);
+yBinEdges = yBnds(1):spatBinSz:yBnds(2);
 
 
 
@@ -69,7 +80,7 @@ if velFilt == 1
     mwRs = [instRs(1:mwInds(1)-1) mwRs instRs(mwInds(end)+1:length(instRs))]; %make the length of the moving window version match
     velFiltBnry = zeros(1,length(mwRs));
     velFiltBnry(mwRs>=runThresh) = 1;
- 
+    
 end
 
 
@@ -85,9 +96,9 @@ halfFt = mean(diff(coords(:,1)))/2; %half of the frame-rate
 binTimes = cell(numXBins, numYBins); %catcher for time-stamps when rat is in each bin
 binTimeSum = zeros(numXBins, numYBins);
 for x = 1:numXBins
-    xRange = [(x-1)*spatBinSz x*spatBinSz];
+    xRange = [xBinEdges(x) xBinEdges(x+1)];
     for y = 1:numYBins
-        yRange = [(y-1)*spatBinSz y*spatBinSz];
+        yRange = [yBinEdges(y) yBinEdges(y+1)];
         
         binInds = coords(:,2)>=xRange(1) & coords(:,2)<xRange(2) & coords(:,3)>=yRange(1) & coords(:,3)<yRange(2);
         %                   Indices for when the rat is in each spatial bin
@@ -132,14 +143,14 @@ for x = 1:numXBins
         if ~isempty(binTimes{x,y})
             for t = 1:size(binTimes{x,y},1)
                 tmpTimeBnds = binTimes{x,y}(t,:);
-                spkInds = find(spkTms>=tmpTimeBnds(1) & spkTms<=tmpTimeBnds(2)); 
-                numSpks = length(spkInds); 
+                spkInds = find(spkTms>=tmpTimeBnds(1) & spkTms<=tmpTimeBnds(2));
+                numSpks = length(spkInds);
                 
                 if velFilt == 1 %if only looking at firing rate while the rat is moving
                     if ~isempty(spkInds)
                         for si = 1:length(spkInds)
                             spkTmInd = find(coords(:,1)>=spkTms(si), 1, 'First'); % doing '>=' because of the half-frame time adjustment above
-                            if velFiltBnry(spkTmInd) == 0 %if the rat wasn't moving when this spike went off... 
+                            if velFiltBnry(spkTmInd) == 0 %if the rat wasn't moving when this spike went off...
                                 numSpks = numSpks - 1; %don't count this spike
                             end
                         end

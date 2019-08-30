@@ -3,13 +3,13 @@ function [binCounts, binCtrDegs] = assess_phi_phi_coupling(thetaPhaseSwps, gamma
 %
 % PURPOSE: 
 %  To get the theta/gamma phi-phi coupling matrix indicating, for each theta phase,
-%  what the distribution of gamma phases looked like. 
+%  what the distribution of gamma phases looks like (in raw counts). 
 % 
 % INPUT: 
 %  thetaPhaseSwps = trials x samples; matrix ranging from -pi to pi indicating theta phase for each sample/sweep
 %                   **Use 'get_asym_theta_phi_vector' to get a vector of asym theta phases [rather than angle(hilbert(x))]
 %  gammaPhaseSwps = trials x samples; matrix ranging from -pi to pi indicating gamma phase for each sample/sweep
-%      plotOpt = binary indicating whether or not to plot the results; if left out, default is 0
+%         plotOpt = binary indicating whether or not to plot the results; if left out, default is 0
 %                 
 % OUTPUT: 
 %    binCounts = 72 x 72 matrix containing the counts of gamma phase bins for each theta phase bin
@@ -54,7 +54,7 @@ for b = 1:nBins
     tmpGammaBins = gammaPhiBinMat(thetaPhiBinMat==b);
     
     %% GET DISTRIBUTION OF GAMMA PHASES WHEN THETA IS IN PHASE BIN B
-    binCounts(:,b) = histcounts(tmpGammaBins, 'BinLimits', [1 73], 'BinWidth', 1, 'Normalization', 'Probability');%#ok
+    binCounts(:,b) = histcounts(tmpGammaBins, 'BinLimits', [1 73], 'BinWidth', 1); 
     
 end
 

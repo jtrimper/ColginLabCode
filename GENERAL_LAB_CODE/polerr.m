@@ -35,6 +35,7 @@ function ip = polerr(rho_AVG, rho_SEM, theta_AVG, theta_SEM, colOpts, varargin)
 
 maxRad = max(rho_AVG + rho_SEM); %get the max radius that will be plotted and use that to define the range of the plot
 ip = polar([0 0], [0 maxRad]);%make the initial polar plot
+% ip = polar([0 0], [0 0.2]);%make the initial polar plot
 set(ip, 'Color', [0.85938 0.85938 0.85938]);%and set the line you plotted to be the same color as the background plot
 
 if nargin == 6
