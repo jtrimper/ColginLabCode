@@ -32,9 +32,7 @@ function [rateMap, spkCnt, timePerBin] = get_ratemap(spkTms, coords, xBnds, yBnd
 
 
 %% DEFAULT, IF NECESSARY, TO NOT PLOTTING
-%    Note to self: If these next 3 lines fail to run, try changing the first line to "if ~exist('plotOrNot', 'var)"
-%                  JT should test this later on, but in the middle of separate function currently.
-if nargin < 5 || isempty(plotOrNot)
+if nargin < 5 || ~exist('plotOrNot', 'var')
     plotOrNot = 0;
 end
 
