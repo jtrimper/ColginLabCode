@@ -23,7 +23,7 @@ function phaseTimes = get_theta_phase_times(lfpStruct, flipLfp)
 % NOTE:
 %   Based on JR Manns's code 'find_theta_quartiles'
 %
-% JBT 
+% JBT
 % 10/2016
 % Colgin Lab
 
@@ -34,7 +34,7 @@ function phaseTimes = get_theta_phase_times(lfpStruct, flipLfp)
 ts = lfpStruct.ts;
 
 
-%% FLIP THE LFP IF DESIRED 
+%% FLIP THE LFP IF DESIRED
 %   So peaks become troughs and what not
 if nargin == 1
     flipLfp = 0;
@@ -99,7 +99,7 @@ for q = 1:length(phaseTimes)
     trTime = phaseTimes(3,q);
     
     tmpCrossInd = find(zeroTimes>pkTime & zeroTimes<trTime);
-    if ~isempty(tmpCrossInd)
+    if length(tmpCrossInd)==1
         phaseTimes(2,q) = zeroTimes(tmpCrossInd);
     else%interpolate where the zero would be
         phaseTimes(2,q) = pkTime + (trTime - pkTime)/2;
@@ -113,7 +113,7 @@ for q = 1:length(phaseTimes)
         trTime = phaseTimes(3,q);
         
         tmpCrossInd = find(zeroTimes>trTime & zeroTimes<pkTime);
-        if ~isempty(tmpCrossInd)
+        if length(tmpCrossInd)==1
             phaseTimes(4,q) = zeroTimes(tmpCrossInd);
         else%interpolate where the zero would be
             phaseTimes(4,q) = trTime + (pkTime - trTime)/2;

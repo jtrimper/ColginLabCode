@@ -16,10 +16,10 @@ function S = get_wavelet_power(data, Fs, fPass, width, useOrigNorm, dbConv)
 %               If this input is not provided, function defaults to NEW normalization procedure (i.e., useOrigNorm = 0)  
 %                 [see lines 116-120 below for implementation]
 %     dbConv = optional binary indicating whether (1) or not (0) to convert to dB
-%              If this input is not provided, function defaults to decibel conversion (i.e, dbConv = 1)
+%              If this input is not provided, function defaults to NO decibel conversion (i.e, dbConv = 0)
 %
 % OUTPUT:
-%        S = power in decibels [DIMS = f x t]
+%        S = freq x time power (in decibels if dbConv == 1)
 %
 %
 % JB Trimper
@@ -34,7 +34,7 @@ if nargin < 5 || isempty(useOrigNorm)
 end
 
 if nargin < 6 || isempty(dbConv)
-    dbConv = 1; 
+    dbConv = 0; 
 end
 
 

@@ -1,4 +1,22 @@
 function [post,posx,posy,Circle, xScale, yScale] = LoadCircPos(file)
+% function [post,posx,posy,Circle, xScale, yScale] = LoadCircPos(file)
+%
+% PURPOSE: 
+%    To get x and y positions of rat on the circular track. 
+%
+% INPUT: 
+%   file = behavior file name ('VT1.nvt'); 
+%
+% OUTPUT: 
+%     post = time-stamps for each video frame
+%     posx = x position of the rat in centimeters
+%     posy = y position of the rat in centimeters
+%    Circle = I'm not sure (JBT)
+%    xScale = scale used to convert from pixels to cm in the x dimension
+%    yScale = scale used to convert from pixels to cm in the y dimension
+%
+% Ernie Hwaun
+%  Doc by JB Trimper
 
 fieldSelection(1) = 1; % Timestamps
 fieldSelection(2) = 1; % Extracted X
