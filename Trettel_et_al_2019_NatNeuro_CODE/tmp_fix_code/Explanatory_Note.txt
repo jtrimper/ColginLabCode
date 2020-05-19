@@ -1,0 +1,6 @@
+These were quick fixes for minor bugs introduced by the main analysis functions. 
+
+They've already been run and don't need to be run again. 
+
+The bugs in the main functions have been fixed so if you started over from scratch, they wouldn't
+be re-introduced and you wouldn't need to re-run these functions. 
